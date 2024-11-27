@@ -452,12 +452,39 @@ async def main():
     await application.bot.set_webhook(url=WEBHOOK_URL)
     
     # Start the webhook server
+    port = int(os.environ.get("PORT", 10000))  # Render typically uses port 10000
     await application.run_webhook(
         listen="0.0.0.0",
-        port=int(os.getenv('PORT', 8443)),  # Keep using PORT env variable as Render requires this
+        port=port,
         url_path="",
         webhook_url=WEBHOOK_URL,
         drop_pending_updates=True
     )
 
+    #print(f"Server running on port {port}")  # Add this line for debugging
+
 # ... rest of the code remains the same ...
+
+def run_bot():
+    """Runner function for the bot"""
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO
+    )
+    
+    try:
+        # Create event loop and run main
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(main())
+        loop.run_forever()
+        
+    except KeyboardInterrupt:
+        logging.info("Bot stopped by user")
+        
+    except Exception as e:
+        logging.error(f"Fatal error: {e}")
+        raise
+
+if __name__ == "__main__":
+    run_bot()
