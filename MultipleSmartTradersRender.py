@@ -13,13 +13,18 @@ from contextlib import suppress
 from httpx import Timeout
 import logging
 import nest_asyncio
-from keep_alive import keep_alive
+from flask import Flask
+import threading
+
+# Create Flask app
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
 nest_asyncio.apply()
-keep_alive()
-#PORT = 8443  # Render will provide the PORT environment variable
-# Telegram bot configuration
-dotenv_path = find_dotenv()
-load_dotenv(dotenv_path)
+
 # Telethon client configuration
 BOT_TOKEN = "7327291802:AAFPM911VQH5uyTX2uPG8j503NCt3r62yMs"#3os.getenv("BOT_TOKEN")
 API_ID = 21202746#int(os.getenv("API_ID"))
@@ -487,5 +492,12 @@ def run_bot():
         logging.error(f"Fatal error: {e}")
         raise
 
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
+    
 if __name__ == "__main__":
+     # Start Flask in a separate thread
+    flask_thread = threading.Thread(target=run_flask)
+    flask_thread.start()
     run_bot()
