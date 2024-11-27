@@ -8,4 +8,3 @@ nest_asyncio
 python-telegram-bot[webhooks]
 Flask
 functools
-threading
