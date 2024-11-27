@@ -336,7 +336,7 @@ async def monitor_channels(context, session):
                     current_messages.append("\n".join(message_parts))
 
             new_messages = [msg for msg in current_messages if msg not in session.previous_messages]
-             if new_messages:
+            if new_messages:
                 for message in new_messages[:1]:
                     await context.bot.send_message(
                         chat_id=session.chat_id,
