@@ -15,6 +15,7 @@ import logging
 import nest_asyncio
 from flask import Flask
 import threading
+from functools import partial
 
 # Create Flask app
 app = Flask(__name__)
@@ -471,33 +472,40 @@ async def main():
 
 # ... rest of the code remains the same ...
 
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port, use_reloader=False)  # Disabled reloader
+    
 def run_bot():
-    """Runner function for the bot"""
+    try:
+        # Create a new event loop for the bot
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(main())
+        loop.run_forever()
+    except Exception as e:
+        logging.error(f"Fatal error: {e}")
+        raise
+
+if __name__ == "__main__":
+    # Set up logging
     logging.basicConfig(
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         level=logging.INFO
     )
     
     try:
-        # Create event loop and run main
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        loop.run_until_complete(main())
-        loop.run_forever()
+        # Start Flask in a separate thread
+        flask_thread = threading.Thread(target=run_flask)
+        flask_thread.daemon = True  # Make the thread daemon so it exits when main thread exits
+        flask_thread.start()
+        
+        # Run the bot in the main thread
+        run_bot()
         
     except KeyboardInterrupt:
         logging.info("Bot stopped by user")
-        
     except Exception as e:
         logging.error(f"Fatal error: {e}")
         raise
-
-def run_flask():
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
-    
-if __name__ == "__main__":
-     # Start Flask in a separate thread
-    flask_thread = threading.Thread(target=run_flask)
-    flask_thread.start()
-    run_bot()
