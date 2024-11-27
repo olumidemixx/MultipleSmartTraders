@@ -446,7 +446,7 @@ async def main():
     application.add_handler(CommandHandler("stop", stop))
     
     # Hardcoded Render URL
-    WEBHOOK_URL = "https://your-app-name.onrender.com"  # Replace with your actual Render URL
+    WEBHOOK_URL = "https://multiplesmarttraders-dgwh.onrender.com"  # Replace with your actual Render URL
     
     # Set up webhook
     await application.bot.set_webhook(url=WEBHOOK_URL)
