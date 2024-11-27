@@ -13,8 +13,9 @@ from contextlib import suppress
 from httpx import Timeout
 import logging
 import nest_asyncio
-#from keep_alive import keep_alive
+from keep_alive import keep_alive
 nest_asyncio.apply()
+keep_alive()
 #PORT = 8443  # Render will provide the PORT environment variable
 # Telegram bot configuration
 dotenv_path = find_dotenv()
