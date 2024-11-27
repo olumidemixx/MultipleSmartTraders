@@ -336,13 +336,16 @@ async def monitor_channels(context, session):
                     current_messages.append("\n".join(message_parts))
 
             new_messages = [msg for msg in current_messages if msg not in session.previous_messages]
-            if new_messages:
+             if new_messages:
                 for message in new_messages[:1]:
                     await context.bot.send_message(
                         chat_id=session.chat_id,
                         text=message
                     )
-                session.previous_messages = current_messages.copy()
+                # Update previous_messages by adding only the new messages
+                session.previous_messages.extend(new_messages)
+                # Optionally, limit the size of previous_messages to prevent it from growing too large
+                session.previous_messages = session.previous_messages[-50:]  # Keep last 1000 messages
             else:
                 await context.bot.send_message(
                         chat_id=session.chat_id,
