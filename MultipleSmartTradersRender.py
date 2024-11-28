@@ -337,11 +337,12 @@ async def monitor_channels(context, session):
 
             new_messages = [msg for msg in current_messages if msg not in session.previous_messages]
             if new_messages:
-                for message in new_messages[:1]:
+                for message in new_messages:
                     await context.bot.send_message(
                         chat_id=session.chat_id,
                         text=message
                     )
+                    await asyncio.sleep(1)
                 # Update previous_messages by adding only the new messages
                 session.previous_messages.extend(new_messages)
                 # Optionally, limit the size of previous_messages to prevent it from growing too large
