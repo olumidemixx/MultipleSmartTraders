@@ -198,7 +198,7 @@ def get_token_address(text, chat_link):
         
         if 'EVMTrackerBot' in chat_link:
             if 'SOL' in text[:47]:
-                return solana_addresses[-1]
+                return solana_addresses[2] if len(solana_addresses) > 0 else solana_addresses[-1]
         
         if 'SOLWalletTrackerBot' in chat_link:
             if 'SOL' in text[:125]:
