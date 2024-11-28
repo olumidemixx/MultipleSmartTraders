@@ -486,7 +486,7 @@ async def main():
     PORT = int(os.environ.get('PORT', 8080))
     
     # Get the public URL from environment variable
-    WEBHOOK_URL = "https://multiplesmarttraders-mqw5.onrender.com"
+    WEBHOOK_URL = "https://multiplesmarttraders-mqw5.onrender.com/telegram"
     if not WEBHOOK_URL:
         raise RuntimeError("No WEBHOOK_URL specified in environment variables")
     
