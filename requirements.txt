@@ -6,4 +6,5 @@ requests
 httpx
 nest_asyncio
 python-telegram-bot[webhooks]
-Flask
+flask
+flask[async]
