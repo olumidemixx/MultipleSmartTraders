@@ -474,10 +474,12 @@ from flask import request
 
 
 async def main():
+    global application  # Add this line
     await initialize_telethon()  # Start the Telethon client
 
     # Initialize Application instance for webhook mode
     application = Application.builder().token(BOT_TOKEN).build()
+    await application.initialize()
 
     # Add command handlers
     application.add_handler(CommandHandler("start", start))
@@ -501,15 +503,23 @@ async def main():
 
     # Add webhook handler for Telegram updates
     @app.route('/telegram', methods=['POST'])
-    async def telegram_webhook():
-        # Get the update from Telegram
-        update = Update.de_json(request.get_json(force=True), application.bot)
-        
-        # Process the update
-        await application.process_update(update)
-        return 'OK'
+    def telegram_webhook():
+        if request.method == 'POST':
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+            try:
+                update = Update.de_json(request.get_json(force=True), application.bot)
+                loop.run_until_complete(application.process_update(update))
+                return 'OK'
+            finally:
+                loop.close()
+        return 'Only POST requests are allowed'
 
-    # Run Flask app
+    # Start the application before running Flask
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(application.start())
+    
     app.run(host='0.0.0.0', port=PORT)
 
 def run_bot():
