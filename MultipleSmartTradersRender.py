@@ -495,5 +495,5 @@ def run_bot():
         logging.error(f"Fatal error: {e}")
         raise
 
-if __name__ == "__main__":
-    run_bot()
+#if __name__ == "__main__":
+ #   run_bot()
