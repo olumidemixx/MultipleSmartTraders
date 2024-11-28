@@ -309,9 +309,14 @@ async def monitor_channels(context, session):
             current_messages = []
             for address, traders in session.multi_trader_tokens.items():
                 if len(traders) >= 2:
+                    # Sort traders first by timestamp, then by trader ID as a tiebreaker
                     sorted_traders = sorted(
-                        traders, 
-                        key=lambda t: session.token_timestamps[address].get(t, 0)
+                        traders,
+                        key=lambda t: (
+                            session.token_timestamps[address].get(t, 0),
+                            # Extract numeric part from trader name for consistent secondary sorting
+                            int(''.join(filter(str.isdigit, t)))
+                        )
                     )
 
                     message_parts = [f"{len(traders)} traders bought {address}:"]
