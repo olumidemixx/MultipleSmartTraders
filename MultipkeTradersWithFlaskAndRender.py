@@ -284,18 +284,18 @@ async def monitor_channels(context, session):
     global chat_limits
 
     chat_limits = {
-        'https://t.me/ray_green_bot': 50,
-        'https://t.me/handi_cat_bot': 50,
-        'https://t.me/Wallet_tracker_solana_spybot': 30,
-        'https://t.me/Godeye_wallet_trackerBot': 50,
-        'https://t.me/GMGN_alert_bot': 50,
-        'https://t.me/Solbix_bot': 15,
-        'https://t.me/EVMTrackerBot': 50,
-        'https://t.me/SOLWalletTrackerBot': 30,
-        'https://t.me/CashCash_alert_bot': 30,
-        'https://t.me/spark_green_bot': 50,
-        'https://t.me/defined_bot': 50,
-        'https://t.me/EtherDROPS7_bot': 75
+        'https://t.me/ray_green_bot': 80,
+        'https://t.me/handi_cat_bot': 80,
+        'https://t.me/Wallet_tracker_solana_spybot': 50,
+        'https://t.me/Godeye_wallet_trackerBot': 80,
+        'https://t.me/GMGN_alert_bot': 80,
+        'https://t.me/Solbix_bot': 20,
+        'https://t.me/EVMTrackerBot': 80,
+        'https://t.me/SOLWalletTrackerBot': 45,
+        'https://t.me/CashCash_alert_bot': 45,
+        'https://t.me/spark_green_bot': 80,
+        'https://t.me/defined_bot': 80,
+        'https://t.me/EtherDROPS7_bot': 120
     }
 
     # Initialize previous round data
