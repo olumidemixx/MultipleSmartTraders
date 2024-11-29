@@ -355,15 +355,15 @@ async def monitor_channels(context, session):
             
             # Check for new tokens or tokens with different trader counts
             for address, trader_count in current_tokens.items():
-                if address not in previous_tokens or previous_tokens[address] != trader_count:
+                if address not in previous_tokens :#or previous_tokens[address] != trader_count:
                     has_changes = True
                     break
 
             # Check for tokens that disappeared in current round
-            for address in previous_tokens:
-                if address not in current_tokens:
-                    has_changes = True
-                    break
+            #for address in previous_tokens:
+             #   if address not in current_tokens:
+              #      has_changes = True
+               #     break
 
             # Send messages based on changes
             if has_changes:
