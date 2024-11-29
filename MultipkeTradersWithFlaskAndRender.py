@@ -313,6 +313,7 @@ async def monitor_channels(context, session):
             # Scrape messages from all channels
             for chat_link, limit in chat_limits.items():
                 await scrap_message(chat_link, session, limit)
+                await asyncio.sleep(0.1)
             
             current_messages = []
             current_tokens = {}  # Track current round's tokens and trader counts
@@ -411,7 +412,7 @@ async def start(update, context):
             chat_id=chat_id,
             text=f"You are not eligible to use the bot. Your username: {update.effective_user.username}"
         )
-        return
+        #return
         
 
     # Start monitoring session for THETRACKOORS group
