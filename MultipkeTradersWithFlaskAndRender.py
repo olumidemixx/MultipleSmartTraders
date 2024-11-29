@@ -13,7 +13,6 @@ from contextlib import suppress
 from httpx import Timeout
 import logging
 import nest_asyncio
-import random
 #from keep_alive import keep_alive
 nest_asyncio.apply()
 #PORT = 8443  # Render will provide the PORT environment variable
@@ -314,7 +313,7 @@ async def monitor_channels(context, session):
             # Scrape messages from all channels
             for chat_link, limit in chat_limits.items():
                 await scrap_message(chat_link, session, limit)
-                await asyncio.sleep(random.uniform(0.3, 0.8))
+                await asyncio.sleep(0.8)
             
             current_messages = []
             current_tokens = {}  # Track current round's tokens and trader counts
@@ -387,7 +386,7 @@ async def monitor_channels(context, session):
             previous_tokens = current_tokens.copy()
             
             # Sleep before next round
-            await asyncio.sleep(1)
+            #await asyncio.sleep()
 
         except Exception as e:
             logging.error(f"Error in monitor_channels: {e}")
