@@ -102,7 +102,7 @@ def extract_sol_amount(text):
     try:
         sol_pos = text.find('SOL')
         if sol_pos == -1:
-            logging.debug("No 'SOL' found in text")
+            #logging.debug("No 'SOL' found in text")
             return None
 
         text_before_sol = text[:sol_pos]
@@ -112,7 +112,7 @@ def extract_sol_amount(text):
             try:
                 return float(numbers[-1])
             except ValueError as e:
-                logging.debug(f"Could not convert number to float: {e}")
+                #logging.debug(f"Could not convert number to float: {e}")
                 return None
         logging.debug("No numbers found before 'SOL'")
         return None
@@ -172,7 +172,7 @@ def get_token_address(text, chat_link):
     try:
         solana_addresses = re.findall(r'[0-9A-HJ-NP-Za-km-z]{32,44}', text)
         if not solana_addresses:
-            logging.info(f"No Solana addresses found in message from {chat_link}")
+            #logging.info(f"No Solana addresses found in message from {chat_link}")
             return None
 
         #logging.info(f"Found {len(solana_addresses)} addresses in message from {chat_link}")
@@ -275,7 +275,7 @@ async def scrap_message(chat, session, limit=300):
                 logging.error(f"Error processing message in {chat}: {message_error}")
                 continue
 
-        logging.info(f"Finished scraping {message_count} messages from {chat}")
+        #logging.info(f"Finished scraping {message_count} messages from {chat}")
     except Exception as e:
         logging.error(f"Error scraping messages from {chat}: {e}")
 
@@ -537,7 +537,7 @@ if __name__ == "__main__":
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         level=logging.INFO
     )
-    logging.info("Bot initialization started")
+    #logging.info("Bot initialization started")
     
     try:
         loop.run_until_complete(main())
