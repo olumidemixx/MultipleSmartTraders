@@ -411,7 +411,7 @@ async def start(update, context):
             chat_id=chat_id,
             text=f"You are not eligible to use the bot. Your username: {update.effective_user.username}"
         )
-        #return
+        return
         
 
     # Start monitoring session for THETRACKOORS group
