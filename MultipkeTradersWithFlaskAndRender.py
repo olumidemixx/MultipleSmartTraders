@@ -367,7 +367,7 @@ async def monitor_channels(context, session):
 
             # Send messages based on changes
             if has_changes:
-                for message in current_messages:
+                for message in current_messages[:2]:
                     if "So11111111111111111111111111111111111111112" in message:
                         continue
                     await context.bot.send_message(
@@ -375,11 +375,11 @@ async def monitor_channels(context, session):
                         text=message
                     )
                     await asyncio.sleep(2)
-            else:
-                await context.bot.send_message(
-                    chat_id=session.chat_id,
-                    text="..."
-                )
+            #else:
+             #   await context.bot.send_message(
+              #      chat_id=session.chat_id,
+               #     text="..."
+                #)
 
             # Update previous tokens for next round
             previous_tokens = current_tokens.copy()
