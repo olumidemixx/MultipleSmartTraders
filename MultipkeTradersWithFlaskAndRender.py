@@ -374,7 +374,7 @@ async def monitor_channels(context, session):
                         chat_id=session.chat_id,
                         text=message
                     )
-                    await asyncio.sleep(2)
+                    #await asyncio.sleep(2)
             #else:
              #   await context.bot.send_message(
               #      chat_id=session.chat_id,
@@ -385,7 +385,7 @@ async def monitor_channels(context, session):
             previous_tokens = current_tokens.copy()
             
             # Sleep before next round
-            await asyncio.sleep(5)
+            await asyncio.sleep(2)
 
         except Exception as e:
             logging.error(f"Error in monitor_channels: {e}")
