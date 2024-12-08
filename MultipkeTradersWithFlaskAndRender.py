@@ -333,7 +333,7 @@ async def monitor_channels(context, session):
                             )
                         )
 
-                        message_parts = [f"{len(traders)} traders bought {address}:"]
+                        message_parts = [f"{len(traders)} traders bought {address}: \n"]
                         
                         for idx, trader in enumerate(sorted_traders, 1):
                             sol_amount = session.token_sol_amounts[address].get(trader)
