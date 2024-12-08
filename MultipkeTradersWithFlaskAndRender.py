@@ -428,7 +428,7 @@ async def start(update, context):
             session.monitoring_task = asyncio.create_task(monitor_channels(context, session))
             await context.bot.send_message(
                 chat_id=chat_id,
-                text="Monitoring started for THETRACKOORS."
+                text="Zenith bot has started monitoring."
             )
     else:
         context.bot_data[chat_id] = MonitoringSession(chat_id)
@@ -438,7 +438,7 @@ async def start(update, context):
         session.monitoring_task = asyncio.create_task(monitor_channels(context, session))
         await context.bot.send_message(
             chat_id=chat_id,
-            text="Monitoring NOW started for THETRACKOORS."
+            text="Zenith bot has started monitoring."
         )
 
 async def stop(update, context):
@@ -461,12 +461,12 @@ async def stop(update, context):
             session.token_timestamps.clear()
             await context.bot.send_message(
                 chat_id=chat_id,
-                text=f"Monitoring stopped for THETRACKOORS.\nTotal running time: {final_duration:.2f} seconds"
+                text=f"Zenith bot has stopped monitoring .\nTotal running time: {final_duration:.2f} seconds"
             )
         else:
             await context.bot.send_message(
                 chat_id=chat_id,
-                text="Monitoring is not active for THETRACKOORS."
+                text="Zenith bot is not actively monitoring"
             )
     else:
         await context.bot.send_message(
