@@ -275,7 +275,7 @@ async def scrap_message(chat, session, limit=300):
                 logging.error(f"Error processing message in {chat}: {message_error}")
                 continue
 
-        #logging.info(f"Finished scraping {message_count} messages from {chat}")
+        logging.info(f"Finished scraping {message_count} messages from {chat}")
     except Exception as e:
         logging.error(f"Error scraping messages from {chat}: {e}")
 
