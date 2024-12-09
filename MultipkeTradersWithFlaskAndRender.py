@@ -294,8 +294,8 @@ async def monitor_channels(context, session):
         'https://t.me/SOLWalletTrackerBot': 40,
         'https://t.me/CashCash_alert_bot': 40,
         'https://t.me/spark_green_bot': 65,
-        'https://t.me/defined_bot': 65,
-        'https://t.me/EtherDROPS7_bot': 120
+        'https://t.me/defined_bot': 120,
+        'https://t.me/EtherDROPS7_bot': 65
     }
 
     # Initialize previous round data
