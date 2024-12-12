@@ -289,7 +289,7 @@ async def monitor_channels(context, session):
         'https://t.me/Wallet_tracker_solana_spybot': 23,
         'https://t.me/Godeye_wallet_trackerBot': 40,
         'https://t.me/GMGN_alert_bot': 40,
-        'https://t.me/Solbix_bot': 8,
+        #'https://t.me/Solbix_bot': 8,
         'https://t.me/Cielo_finance_free_bot': 40,
         'https://t.me/SOLWalletTrackerBot': 23,
         'https://t.me/CashCash_alert_bot': 23,
