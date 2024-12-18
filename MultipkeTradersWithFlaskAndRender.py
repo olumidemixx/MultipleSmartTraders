@@ -3,6 +3,7 @@ import time
 from datetime import datetime
 from dotenv import find_dotenv, load_dotenv
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from telegram import Update, ParseMode
 from telethon import TelegramClient
 import re
 from collections import defaultdict
@@ -333,7 +334,7 @@ async def monitor_channels(context, session):
                             )
                         )
 
-                        message_parts = [f"{len(traders)} traders bought {address}: \n"]
+                        message_parts = [f"{len(traders)} traders bought `{address}`: \n"]
                         
                         for idx, trader in enumerate(sorted_traders, 1):
                             sol_amount = session.token_sol_amounts[address].get(trader)
@@ -373,7 +374,8 @@ async def monitor_channels(context, session):
                         continue
                     await context.bot.send_message(
                         chat_id=session.chat_id,
-                        text=message
+                        text=message,
+                        parse_mode = ParseMode.MARKDOWN
                     )
                     #await asyncio.sleep(2)
             
