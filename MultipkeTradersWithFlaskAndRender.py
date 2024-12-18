@@ -3,7 +3,6 @@ import time
 from datetime import datetime
 from dotenv import find_dotenv, load_dotenv
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
-from telegram import Update, ParseMode
 from telethon import TelegramClient
 import re
 from collections import defaultdict
@@ -375,7 +374,7 @@ async def monitor_channels(context, session):
                     await context.bot.send_message(
                         chat_id=session.chat_id,
                         text=message,
-                        parse_mode = ParseMode.MARKDOWN
+                        parse_mode='Markdown'
                     )
                     #await asyncio.sleep(2)
             
