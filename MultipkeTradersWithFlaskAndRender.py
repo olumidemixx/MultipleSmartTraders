@@ -13,6 +13,10 @@ from contextlib import suppress
 from httpx import Timeout
 import logging
 import nest_asyncio
+from flask import Flask
+#from threading import Thread
+from telegram import Update
+from flask import request
 #from keep_alive import keep_alive
 nest_asyncio.apply()
 #PORT = 8443  # Render will provide the PORT environment variable
@@ -32,7 +36,7 @@ EXCLUDED_TOKEN = 'So11111111111111111111111111111112'
 # Authorized users allowed to command the bot in THETRACKOORS group
 AUTHORIZED_USERS = {'orehub1378', 'Kemoo1975', 'jeremi1234', 'Busiiiiii'}
 # The THETRACKOORS group identifier
-THETRACKOORS_CHAT_ID = -1002297141126  # Replace with actual chat ID for THETRACKOORS
+THETRACKOORS_CHAT_ID = -1002447422257  # Replace with actual chat ID for THETRACKOORS
 
 # Global variable to indicate if THETRACKOORS is being monitored
 is_tracking_thetrackoors = False
@@ -59,14 +63,9 @@ async def initialize_telethon():
     #logging.info("Telethon client initialized and started")
 
 async def check_authorization(update):
-    """Check if the user is authorized to use the bot in the THETRACKOORS group"""
-    user_username = update.effective_user.username
-
-    # Check if the user is in AUTHORIZED_USERS and the chat is THETRACKOORS
-    if update.effective_chat.id == THETRACKOORS_CHAT_ID:
-        return user_username and user_username.lower() in {user.lower() for user in AUTHORIZED_USERS}
-    
-    return False  # Not authorized if not in THETRACKOORS group
+    """Check if the chat is the THETRACKOORS group"""
+    # Check if the chat is THETRACKOORS
+    return update.effective_chat.id == THETRACKOORS_CHAT_ID
 
 def extract_market_cap(text):
     """Extract market cap value and unit from the message"""
@@ -405,42 +404,7 @@ async def monitor_channels(context, session):
             )
             break
 
-async def start(update, context):
-    """Start the message monitoring process for the THETRACKOORS group"""
-    #global is_tracking_thetrackoors
-    chat_id = update.effective_chat.id
 
-    # Check if user is authorized and the chat is THETRACKOORS
-    if not await check_authorization(update):
-        await context.bot.send_message(
-            chat_id=chat_id,
-            text=f"You are not eligible to use the bot. Your username: {update.effective_user.username}"
-        )
-        return
-        
-
-    # Start monitoring session for THETRACKOORS group
-    if chat_id in context.bot_data:
-        session = context.bot_data[chat_id]
-        
-        if not session.is_monitoring:
-            session.is_monitoring = True
-            session.start_time = time.time()
-            session.monitoring_task = asyncio.create_task(monitor_channels(context, session))
-            await context.bot.send_message(
-                chat_id=chat_id,
-                text="Zenith bot has started monitoring."
-            )
-    else:
-        context.bot_data[chat_id] = MonitoringSession(chat_id)
-        session = context.bot_data[chat_id]
-        session.is_monitoring = True
-        session.start_time = time.time()
-        session.monitoring_task = asyncio.create_task(monitor_channels(context, session))
-        await context.bot.send_message(
-            chat_id=chat_id,
-            text="Zenith bot has started monitoring."
-        )
 
 async def stop(update, context):
     """Stop the message monitoring process for the THETRACKOORS group"""
@@ -491,7 +455,12 @@ async def main():
     await application.initialize()
     await application.start()
 
-    application.add_handler(CommandHandler("start", start))
+    session = MonitoringSession(THETRACKOORS_CHAT_ID)  # Create a new session
+    session.is_monitoring = True  # Set monitoring to True
+    session.start_time = time.time()  # Set start time
+    session.monitoring_task = asyncio.create_task(monitor_channels(application, session))  # Start monitoring directly
+
+    #application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("stop", stop))
 
     PORT = int(os.environ.get('PORT', '8080'))
