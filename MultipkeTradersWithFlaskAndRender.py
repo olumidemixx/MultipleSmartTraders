@@ -290,7 +290,7 @@ async def monitor_channels(context, session):
         'https://t.me/GMGN_alert_bot': 40,
         #'https://t.me/Solbix_bot': 8,
         #'https://t.me/Cielo_finance_free_bot': 40,
-        'https://t.me/SOLWalletTrackerBot': 23,
+        #'https://t.me/SOLWalletTrackerBot': 23,
         #'https://t.me/CashCash_alert_bot': 23,
         'https://t.me/spark_green_bot': 40,
         'https://t.me/defined_bot': 75,
@@ -404,6 +404,22 @@ async def monitor_channels(context, session):
             )
             break
 
+async def start(update, context):
+    """Stop the message monitoring process for the THETRACKOORS group"""
+    global is_tracking_thetrackoors
+    chat_id = update.effective_chat.id
+    
+    if chat_id in context.bot_data:
+        await context.bot.send_message(
+                chat_id=chat_id,
+                text="NOTHING FOR YOU......"
+            )
+        
+    else:
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="xxxxxxxxxxxxx"
+        )
 
 
 async def stop(update, context):
@@ -460,7 +476,7 @@ async def main():
     session.start_time = time.time()  # Set start time
     session.monitoring_task = asyncio.create_task(monitor_channels(application, session))  # Start monitoring directly
 
-    #application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("stop", stop))
 
     PORT = int(os.environ.get('PORT', '8080'))
