@@ -418,7 +418,9 @@ async def start(update, context):
     else:
         await context.bot.send_message(
             chat_id=chat_id,
-            text="xxxxxxxxxxxxx"
+            text="I am Zenith Bot and I track Smart wallets and KOL wallets.\n"
+                 "To know the latest tokens smart wallets and KOLs are buying, join my channel where I drop the calls below:\n"
+                 "https://t.me/Smart_Money_Buy"
         )
 
 
@@ -452,7 +454,9 @@ async def stop(update, context):
     else:
         await context.bot.send_message(
             chat_id=chat_id,
-            text="No monitoring session found for THETRACKOORS."
+            text="I am Zenith Bot and I track Smart wallets and KOL wallets.\n"
+                 "To know the latest tokens smart wallets and KOLs are buying, join my channel where I drop the calls below:\n"
+                 "https://t.me/Smart_Money_Buy"
         )
 
     
