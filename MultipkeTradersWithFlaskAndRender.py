@@ -484,7 +484,7 @@ async def main():
     application.add_handler(CommandHandler("stop", stop))
 
     PORT = int(os.environ.get('PORT', '8080'))
-    WEBHOOK_URL = "https://multiplesmarttraders-xq0j.onrender.com/telegram"
+    WEBHOOK_URL = "https://multiplesmarttraders-m3y9.onrender.com/telegram"
     await application.bot.set_webhook(url=WEBHOOK_URL)
 
     app = Flask(__name__)
