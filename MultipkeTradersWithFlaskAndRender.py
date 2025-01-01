@@ -346,7 +346,7 @@ async def monitor_channels(context, session):
                                 f"on {pump_type}"
                             ).strip()
                             
-                            message_parts.append(trader_message)
+                            #message_parts.append(trader_message)
 
                         current_messages.append("\n".join(message_parts))
 
