@@ -389,7 +389,7 @@ async def monitor_channels(context, session):
             previous_tokens = current_tokens.copy()
             
             # Sleep before next round
-            await asyncio.sleep(50)
+            await asyncio.sleep(100)
             logging.info("Another round Commences")
         
 
