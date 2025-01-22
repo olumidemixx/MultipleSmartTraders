@@ -377,7 +377,7 @@ async def monitor_channels(context, session):
                         text=message,
                         parse_mode='Markdown'
                     )
-                    await asyncio.sleep(30)
+                    await asyncio.sleep(0.5)
             
             #else:
              #   await context.bot.send_message(
@@ -389,7 +389,7 @@ async def monitor_channels(context, session):
             previous_tokens = current_tokens.copy()
             
             # Sleep before next round
-            #await asyncio.sleep()
+            await asyncio.sleep(50)
             logging.info("Another round Commences")
         
 
