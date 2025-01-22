@@ -377,7 +377,7 @@ async def monitor_channels(context, session):
                         text=message,
                         parse_mode='Markdown'
                     )
-                    await asyncio.sleep(150)
+                    await asyncio.sleep(30)
             
             #else:
              #   await context.bot.send_message(
