@@ -190,13 +190,13 @@ def get_token_address(text, chat_link):
             return solana_addresses[2] if len(solana_addresses) > 2 else solana_addresses[-1]
         
         if 'GMGN_alert_bot' in chat_link:
-            return solana_addresses[0] if len(solana_addresses) > 3 else solana_addresses[-1]
+            return solana_addresses[3] if len(solana_addresses) > 3 else solana_addresses[-1]
         
         if 'Solbix_bot' in chat_link:
             return solana_addresses[4] if len(solana_addresses) > 4 else solana_addresses[-1]
         
         if 'FireSorcerer_bot' in chat_link:
-            return solana_addresses[2] if len(solana_addresses) > 3 else solana_addresses[-1]
+            return solana_addresses[3] if len(solana_addresses) > 3 else solana_addresses[-1]
         
         if 'EVMTrackerBot' in chat_link:
             if 'SOL' in text[:47]:
