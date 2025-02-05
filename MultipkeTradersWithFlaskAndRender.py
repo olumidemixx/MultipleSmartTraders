@@ -190,10 +190,13 @@ def get_token_address(text, chat_link):
             return solana_addresses[2] if len(solana_addresses) > 2 else solana_addresses[-1]
         
         if 'GMGN_alert_bot' in chat_link:
-            return solana_addresses[3] if len(solana_addresses) > 3 else solana_addresses[-1]
+            return solana_addresses[0] if len(solana_addresses) > 3 else solana_addresses[-1]
         
         if 'Solbix_bot' in chat_link:
             return solana_addresses[4] if len(solana_addresses) > 4 else solana_addresses[-1]
+        
+        if 'FireSorcerer_bot' in chat_link:
+            return solana_addresses[2] if len(solana_addresses) > 3 else solana_addresses[-1]
         
         if 'EVMTrackerBot' in chat_link:
             if 'SOL' in text[:47]:
@@ -287,7 +290,8 @@ async def monitor_channels(context, session):
         #'https://t.me/handi_cat_bot': 40,
         'https://t.me/Wallet_tracker_solana_spybot': 23,
         'https://t.me/Godeye_wallet_trackerBot': 40,
-        'https://t.me/GMGN_alert_bot': 40,
+        'https://t.me/GMGN_alert_bot': 23,
+        'https://t.me/FireSorcerer_bot': 23,
         #'https://t.me/Solbix_bot': 8,
         #'https://t.me/Cielo_finance_free_bot': 40,
         #'https://t.me/SOLWalletTrackerBot': 23,
