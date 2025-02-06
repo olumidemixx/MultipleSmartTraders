@@ -28,7 +28,7 @@ BOT_TOKEN = "7341500061:AAHdRNvAYWTIUj_DydVU3xnrgsonK5jG8es"#"7327291802:AAFPM91
 API_ID = 21202746#int(os.getenv("API_ID"))
 API_HASH = "e700432294937e6925a83149ee7165a0"#os.getenv("API_HASH")
 # Create Telethon client
-telethon_client = TelegramClient('testfirepowerwest', API_ID, API_HASH)
+telethon_client = TelegramClient('smartwoolet', API_ID, API_HASH)
 
 # Excluded token address
 EXCLUDED_TOKEN = 'So11111111111111111111111111111112'
@@ -289,15 +289,15 @@ async def monitor_channels(context, session):
         'https://t.me/ray_green_bot': 40,
         #'https://t.me/handi_cat_bot': 40,
         'https://t.me/Wallet_tracker_solana_spybot': 23,
-        'https://t.me/Godeye_wallet_trackerBot': 40,
-        'https://t.me/GMGN_alert_bot': 23,
+        #'https://t.me/Godeye_wallet_trackerBot': 40,
+        'https://t.me/GMGN_alert_bot': 40,
         'https://t.me/FireSorcerer_bot': 23,
         #'https://t.me/Solbix_bot': 8,
         #'https://t.me/Cielo_finance_free_bot': 40,
         #'https://t.me/SOLWalletTrackerBot': 23,
         #'https://t.me/CashCash_alert_bot': 23,
         'https://t.me/spark_green_bot': 40,
-        'https://t.me/defined_bot': 75,
+        'https://t.me/defined_bot': 40,
         #'https://t.me/EtherDROPS7_bot': 40
     }
 
