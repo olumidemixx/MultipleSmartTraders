@@ -28,7 +28,7 @@ BOT_TOKEN = "7341500061:AAHdRNvAYWTIUj_DydVU3xnrgsonK5jG8es"#"7327291802:AAFPM91
 API_ID = 21202746#int(os.getenv("API_ID"))
 API_HASH = "e700432294937e6925a83149ee7165a0"#os.getenv("API_HASH")
 # Create Telethon client
-telethon_client = TelegramClient('smw', API_ID, API_HASH)
+telethon_client = TelegramClient('smwt', API_ID, API_HASH)
 
 # Excluded token address
 EXCLUDED_TOKEN = 'So11111111111111111111111111111112'
